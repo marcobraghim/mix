@@ -29,6 +29,7 @@ export 'src/theme/tokens/size.dart';
 export 'src/theme/tokens/space.dart';
 export 'src/variants/dynamic_variants/dynamic_variants.utils.dart';
 export 'src/variants/variant.dart';
+export 'src/widgets/box/box.animated.widget.dart';
 export 'src/widgets/box/box.attributes.dart';
 export 'src/widgets/box/box.utils.dart';
 export 'src/widgets/box/box.widget.dart';

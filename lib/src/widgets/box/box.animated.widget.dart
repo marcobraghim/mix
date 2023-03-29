@@ -9,8 +9,8 @@ import '../mix_context_builder.dart';
 import '../nothing.widget.dart';
 import 'box.descriptor.dart';
 
-class Box extends MixWidget {
-  const Box({
+class AnimatedBox extends MixWidget {
+  const AnimatedBox({
     Mix? mix,
     Key? key,
     bool? inherit,
@@ -35,7 +35,7 @@ class Box extends MixWidget {
         final boxProps = BoxDescriptor.fromContext(context);
         final commonProps = CommonDescriptor.fromContext(context);
 
-        return BoxMixedWidget(
+        return AnimatedBoxMixedWidget(
           boxProps: boxProps,
           commonProps: commonProps,
           child: child,
@@ -45,8 +45,8 @@ class Box extends MixWidget {
   }
 }
 
-class BoxMixedWidget extends StatelessWidget {
-  const BoxMixedWidget({
+class AnimatedBoxMixedWidget extends StatelessWidget {
+  const AnimatedBoxMixedWidget({
     required this.boxProps,
     required this.commonProps,
     this.child,
@@ -63,7 +63,7 @@ class BoxMixedWidget extends StatelessWidget {
       return const Nothing();
     }
 
-    Widget current = Container(
+    Widget current = AnimatedContainer(
       color: boxProps.color,
       decoration: boxProps.decoration,
       alignment: boxProps.alignment,
@@ -72,6 +72,8 @@ class BoxMixedWidget extends StatelessWidget {
       padding: boxProps.padding,
       height: boxProps.height,
       width: boxProps.width,
+      duration: commonProps.animationDuration,
+      curve: commonProps.animationCurve,
       transform: boxProps.transform,
       child: child,
     );
