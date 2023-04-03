@@ -4,33 +4,83 @@ import 'package:mix/mix.dart';
 import 'package:mix/src/dtos/border/border.dto.dart';
 import 'package:mix/src/dtos/color.dto.dart';
 import 'package:mix/src/dtos/edge_insets/edge_insets.dto.dart';
+import 'package:mix/src/dtos/edge_insets/edge_insets_directional.dto.dart';
 import 'package:mix/src/dtos/radius/border_radius.dto.dart';
 import 'package:mix/src/dtos/radius/radius_dto.dart';
 import 'package:mix/src/dtos/shadow/box_shadow.dto.dart';
 
 void main() {
   group("Box Attributes", () {
-    test('-> Margin', () async {
-      const marginAttribute = BoxAttributes(margin: EdgeInsetsDto.all(20));
-      final marginUtilityAttribute = margin(20);
+    group('-> Margin', () {
+      test('ALL', () {
+        const marginAttribute = BoxAttributes(margin: EdgeInsetsDto.all(20));
+        final marginUtilityAttribute = margin(20);
 
-      expect(
-        marginAttribute,
-        marginUtilityAttribute,
-        reason: 'Margin utility does not match attribute',
-      );
+        expect(
+          marginAttribute,
+          marginUtilityAttribute,
+          reason: 'Margin utility does not match attribute',
+        );
 
-      expect(
-        marginAttribute.margin,
-        marginUtilityAttribute.margin,
-        reason: 'Margin values on attribute do not match',
-      );
+        expect(
+          marginAttribute.margin,
+          marginUtilityAttribute.margin,
+          reason: 'Margin values on attribute do not match',
+        );
 
-      expect(
-        marginAttribute.margin,
-        const EdgeInsetsDto.all(20),
-        reason: 'Margin attribute does not match EdgeInsetsDto.all(20)',
-      );
+        expect(
+          marginAttribute.margin,
+          const EdgeInsetsDto.all(20),
+          reason: 'Margin attribute does not match EdgeInsetsDto.all(20)',
+        );
+      });
+
+      test('Insets', () {
+        const marginAttribute = BoxAttributes(margin: EdgeInsetsDto.all(20));
+        final marginUtilityAttribute = marginInsets(const EdgeInsets.all(20));
+
+        expect(
+          marginAttribute,
+          marginUtilityAttribute,
+          reason: 'Margin utility does not match attribute',
+        );
+
+        expect(
+          marginAttribute.margin,
+          marginUtilityAttribute.margin,
+          reason: 'Margin values on attribute do not match',
+        );
+
+        expect(
+          marginAttribute.margin,
+          const EdgeInsetsDto.all(20),
+          reason: 'Margin attribute does not match EdgeInsetsDto.all(20)',
+        );
+      });
+
+      test('Only', () {
+        const marginAttribute =
+            BoxAttributes(margin: EdgeInsetsDirectionalDto.only(top: 20));
+        final marginUtilityAttribute = marginOnly(top: 20);
+
+        expect(
+          marginAttribute,
+          marginUtilityAttribute,
+          reason: 'Margin utility does not match attribute',
+        );
+
+        expect(
+          marginAttribute.margin,
+          marginUtilityAttribute.margin,
+          reason: 'Margin values on attribute do not match',
+        );
+
+        expect(
+          marginAttribute.margin,
+          const EdgeInsetsDirectionalDto.only(top: 20),
+          reason: 'Margin attribute does not match EdgeInsetsDto.all(20)',
+        );
+      });
     });
 
     test('-> Padding', () async {
